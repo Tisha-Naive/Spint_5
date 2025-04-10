@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 class MainPageLocators:
     # Кнопка «Войти в аккаунт» на главной
     LOGIN_BUTTON = (By.XPATH, "//button[text()='Войти в аккаунт']")
+    LOGIN_BUTTON2 = (By.XPATH, "//button[text()='Войти']")
 
     # Кнопка «Личный Кабинет» в шапке
     PERSONAL_ACCOUNT_BUTTON = (By.XPATH, "//p[text()='Личный Кабинет']")
@@ -21,12 +22,27 @@ class MainPageLocators:
 
     # Локатор для логотипа Stellar Burgers (с учетом ссылки)
     STELLAR_BURGERS_LOGO = (By.XPATH, ".//div[@class='AppHeader_header__logo__2D0X2']")
-    # Раздел Булки
-    BUNS_TAB = (By.XPATH, "//span[text()='Булки']")
-    # Раздел Соусы
+
+    # Вкладки конструктора
     SAUCES_TAB = (By.XPATH, "//span[text()='Соусы']")
-    # Раздел Начинки
     FILLINGS_TAB = (By.XPATH, "//span[text()='Начинки']")
+    BUNS_TAB = (By.XPATH, "//span[text()='Булки']")
+
+    SAUCES_TAB_DIV = (By.XPATH, "//span[text()='Соусы']/ancestor::div[contains(@class, 'tab_tab__')]")
+    FILLINGS_TAB_DIV = (By.XPATH, "//span[text()='Начинки']/ancestor::div[contains(@class, 'tab_tab__')]")
+    BUNS_TAB_DIV = (By.XPATH, "//span[text()='Булки']/ancestor::div[contains(@class, 'tab_tab__')]")
+
+    SAUCES_HEADER = (By.XPATH, "//h2[text()='Соусы']")
+    FILLINGS_HEADER = (By.XPATH, "//h2[text()='Начинки']")
+    BUNS_HEADER = (By.XPATH, "//h2[text()='Булки']")
+
+    # Кнопки
+
+    PERSONAL_CABINET = (By.XPATH, "//p[text()='Личный Кабинет']")
+    ORDER_BUTTON = (By.XPATH, "//button[contains(text(), 'Оформить заказ')]")
+
+    PROFILE_LINK = (By.XPATH, "//a[contains(@class, 'Account_link') and @aria-current='page' and text()='Профиль']")
+
 
 
 class RegistrationPageLocators:

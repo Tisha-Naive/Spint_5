@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class MainPage:
     def __init__(self, driver):
         self.driver = driver
+        self.wait = WebDriverWait(driver, 5)
 
     def open(self):
         self.driver.get("https://stellarburgers.nomoreparties.site/")
@@ -46,3 +47,11 @@ class MainPage:
 
     def click_fillings_tab(self):
         self.driver.find_element(*MainPageLocators.FILLINGS_TAB).click()
+
+    def is_tab_selected(self, tab_locator):
+        """Проверяет, что вкладка находится в активном состоянии (по классу)"""
+        element = self.wait.until(EC.visibility_of_element_located(tab_locator))
+        self.wait.until(EC.text_to_be_present_in_element_attribute(
+            tab_locator, "class", "tab_tab_type_current__2BEPc"
+        ))
+        return "tab_tab_type_current__2BEPc" in element.get_attribute("class")

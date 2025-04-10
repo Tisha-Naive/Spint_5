@@ -1,26 +1,21 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+import pytest
 from pages.main_page import MainPage
+from locators import MainPageLocators
 
-def test_constructor_tabs(driver):
-    main_page = MainPage(driver)
-    main_page.open()
+class TestConstructorTabs:
 
-    # Переход к разделу «Соусы»
-    main_page.click_sauces_tab()
-    WebDriverWait(driver, 5).until(
-        EC.visibility_of_element_located((By.XPATH, "//h2[text()='Соусы']"))
-    )
+    def test_switch_tabs(self, driver):
+        main_page = MainPage(driver)
+        main_page.open()
 
-    # Переход к разделу «Начинки»
-    main_page.click_fillings_tab()
-    WebDriverWait(driver, 5).until(
-        EC.visibility_of_element_located((By.XPATH, "//h2[text()='Начинки']"))
-    )
+        # Переход на "Соусы"
+        main_page.click_sauces_tab()
+        assert main_page.is_tab_selected(MainPageLocators.SAUCES_TAB_DIV)
 
-    # Переход к разделу «Булки»
-    main_page.click_buns_tab()
-    WebDriverWait(driver, 5).until(
-        EC.visibility_of_element_located((By.XPATH, "//h2[text()='Булки']"))
-    )
+        # Переход на "Начинки"
+        main_page.click_fillings_tab()
+        assert main_page.is_tab_selected(MainPageLocators.FILLINGS_TAB_DIV)
+
+        # Переход на "Булки"
+        main_page.click_buns_tab()
+        assert main_page.is_tab_selected(MainPageLocators.BUNS_TAB_DIV)

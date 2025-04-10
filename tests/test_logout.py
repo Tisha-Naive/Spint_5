@@ -3,7 +3,8 @@ from pages.profile_page import ProfilePage
 from pages.login_page import LoginPage
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
+from constants import DEFAULT_USER
+from locators import MainPageLocators
 
 def test_logout(driver):
     main_page = MainPage(driver)
@@ -17,13 +18,11 @@ def test_logout(driver):
 
     # Вход в аккаунт
     login_page = LoginPage(driver)
-    login_page.login("akimova1@mail.ru", "йцукен123456")
+    login_page.login(DEFAULT_USER["email"], DEFAULT_USER["password"])
 
     # Ожидаем появления кнопки «Оформить заказ» как подтверждение входа
     WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located(
-            (By.XPATH, "//button[contains(text(), 'Оформить заказ')]")
-        )
+        EC.presence_of_element_located(MainPageLocators.ORDER_BUTTON)
     )
 
     # Переход в личный кабинет
@@ -33,6 +32,7 @@ def test_logout(driver):
     profile_page.click_logout_button()
 
     # Проверяем, что перешли на страницу входа
+
     WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, "//button[text()='Войти']"))
+        EC.presence_of_element_located(MainPageLocators.LOGIN_BUTTON2)
     )
