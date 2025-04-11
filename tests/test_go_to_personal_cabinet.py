@@ -25,5 +25,5 @@ def test_go_to_personal_cabinet(driver):
     WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located(MainPageLocators.PROFILE_LINK)
     )
-
+    assert driver.find_element(*MainPageLocators.PROFILE_LINK).is_displayed()
 

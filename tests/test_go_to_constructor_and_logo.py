@@ -16,6 +16,7 @@ def test_navigation_with_logo_and_constructor(driver):
     WebDriverWait(driver, 10).until(
         EC.url_contains(BASE_URL)
     )
+    assert BASE_URL in driver.current_url, "Не перешли на страницу конструктора"
 
     page.click_stellar_burgers_logo()
 
@@ -23,3 +24,4 @@ def test_navigation_with_logo_and_constructor(driver):
     WebDriverWait(driver, 10).until(
         EC.url_contains(BASE_URL)
     )
+    assert BASE_URL in driver.current_url, "Не вернулись на главную страницу по клику на логотип"

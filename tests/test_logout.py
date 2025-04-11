@@ -36,3 +36,4 @@ def test_logout(driver):
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located(MainPageLocators.LOGIN_BUTTON2)
     )
+    assert driver.find_element(*MainPageLocators.LOGIN_BUTTON2).is_displayed()
